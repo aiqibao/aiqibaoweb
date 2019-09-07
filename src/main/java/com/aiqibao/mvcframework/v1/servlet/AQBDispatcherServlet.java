@@ -16,9 +16,9 @@ import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @autor aiqibao
@@ -27,7 +27,7 @@ import java.util.Properties;
  */
 public class AQBDispatcherServlet extends HttpServlet {
 
-    private Map<String,Object>  mapping = new HashMap<String,Object>() ;
+    private Map<String,Object>  mapping = new ConcurrentHashMap<>() ;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -48,6 +48,10 @@ public class AQBDispatcherServlet extends HttpServlet {
         System.out.println("url" + url);
         String contextPath = req.getContextPath() ;
         System.out.println("contextPath:"+contextPath);
+
+        for(String key:mapping.keySet()){
+            System.out.println("key:"+key+",value:"+mapping.get(key));
+        }
         url = url.replace(contextPath,"").replaceAll("/+","/");
         if(!this.mapping.containsKey(url)){rsp.getWriter().write("404 not found");return;}
         Method method = (Method) this.mapping.get(url);
@@ -89,6 +93,8 @@ public class AQBDispatcherServlet extends HttpServlet {
                     if("".equals(beanName)){beanName = clazz.getName();}
                     Object instance = clazz.newInstance() ;
                     mapping.put(beanName,instance) ;
+                    System.out.println("beanName:" + beanName);
+                    System.out.println("instance:" + instance);
                     for (Class<?> i:clazz.getInterfaces()){
                         mapping.put(i.getName(),instance) ;
                     }
@@ -131,7 +137,7 @@ public class AQBDispatcherServlet extends HttpServlet {
             if(file.isDirectory()) {doScanner(scannerPackage + "." + file.getName());}else{
                 if(!file.getName().endsWith(".class")){continue;}
                 String clazzName = (scannerPackage + "." + file.getName().replace(".class",""));
-                mapping.put(clazzName,null) ;
+                mapping.put(clazzName,"") ;
             }
         }
 

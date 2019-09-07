@@ -6,7 +6,7 @@
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
     <servlet-name>aiqibaoweb</servlet-name>
-    <servlet-class>com.aiqibao.mvcframework.v1.servlet.AQBDispatcherServlet</servlet-class>
+    <servlet-class>com.aiqibao.mvcframework.v2.servlet.AQBDispatcherServlet</servlet-class>
     <init-param>
       <param-name>aqbConfig</param-name>
       <param-value>application.properties</param-value>

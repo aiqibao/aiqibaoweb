@@ -19,8 +19,7 @@ public class DemoAction {
     @AQBAutowired private IDemoService demoService ;
     @AQBRequestMapping("/query")
     public void query(HttpServletRequest req, HttpServletResponse rsp, @AQBRequestParam("name") String name){
-        //String result = demoService.get(name) ;
-        String result = "My name is "+ name ;
+        String result = demoService.get(name) ;
         try {
             rsp.getWriter().write(result);
         }catch(IOException e){

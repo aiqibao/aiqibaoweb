@@ -1,0 +1,10 @@
+com\aiqibao\mvcframework\annotation\AQBAutowired.class
+com\aiqibao\mvcframework\annotation\AQBService.class
+com\aiqibao\mvcframework\annotation\AQBRequestMapping.class
+com\aiqibao\mvcframework\annotation\AQBRequestParam.class
+com\aiqibao\mvcframework\annotation\AQBController.class
+com\aiqibao\mvcframework\v2\servlet\AQBDispatcherServlet.class
+com\aiqibao\mvcframework\v1\servlet\AQBDispatcherServlet.class
+com\aiqibao\demo\service\impl\DemoService.class
+com\aiqibao\demo\service\IDemoService.class
+com\aiqibao\demo\mvc\action\DemoAction.class
